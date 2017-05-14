@@ -33,11 +33,11 @@ const appRoutes: Routes = [
       {
         path: 'browser2', component: Browser2Component
       },
-      {
-        path: 'login', component: LoginComponent
-      },
     ]
   },
+  {
+    path: 'login', component: LoginComponent,
+}
 ];
 
 
