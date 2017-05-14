@@ -1,0 +1,15 @@
+<!--<p>-->
+  <!--browser works!-->
+<!--</p>-->
+<md-input-container>
+  <input type="text" mdInput [formControl]="formControl" [mdAutocomplete]="auto">
+</md-input-container>
+<md-autocomplete #auto="mdAutocomplete" [displayWith]="displayAuthor">
+  <md-option *ngFor="let author of filteredAuthors | async" [value]="author"
+             (onSelectionChange)="selectedAuthor = author">
+    {{ author.name }}
+  </md-option>
+</md-autocomplete>
+<div [hidden] = "!selectedAuthor">
+  // Tutaj wyswietlimy ksiazki danego autora
+</div>
