@@ -18,6 +18,7 @@ import { Browser2Component } from './browser2/browser2.component';
 import { LoginComponent } from './login/login.component';
 import {AuthService} from "./services/auth.service";
 import {AuthorService} from "./services/author.service";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 
 // const appRoutes: Routes = [
@@ -48,16 +49,16 @@ const appRoutes: Routes = [
     component: GuiComponent,
     children: [
       {
-        path: 'author', component: AuthorComponent
+        path: 'author', component: AuthorComponent, canActivate: [AuthGuardService]
       },
       {
-        path: 'book', component: BookComponent
+        path: 'book', component: BookComponent, canActivate: [AuthGuardService]
       },
       {
-        path: 'browser', component: BrowserComponent
+        path: 'browser', component: BrowserComponent, canActivate: [AuthGuardService]
       },
       {
-        path: 'browser2', component: Browser2Component
+        path: 'browser2', component: Browser2Component, canActivate: [AuthGuardService]
       },
     ]
   },
@@ -87,6 +88,6 @@ const appRoutes: Routes = [
     MdSnackBarModule,
   ],
   declarations: [AuthorComponent, BookComponent, GuiComponent, BrowserComponent, Browser2Component, LoginComponent],
-  providers: [AuthService, AuthorService],
+  providers: [AuthService, AuthorService, AuthGuardService],
 })
 export class GuiModule { }

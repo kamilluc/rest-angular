@@ -13,18 +13,26 @@
 <!--<div [hidden] = "!selectedAuthor">-->
   <!--// Tutaj wyswietlimy ksiazki danego autora-->
 <!--</div>-->
-<md-input-container>
-  <input type="text" mdInput [formControl]="formControl" [mdAutocomplete]="auto">  {{selectedAuthor.name}}
-</md-input-container>
 
-<md-autocomplete #auto="mdAutocomplete" [displayWith]="displayAuthor">
-  <md-option *ngFor="let author of authors" (onSelectionChange)="selectedAuthor = author">
-  {{ author.name }}
-  </md-option>
-</md-autocomplete>
-<div [hidden] = "!selectedAuthor">
-  // Tutaj wyswietlimy ksiazki danego autora
-</div>
+
+
+<!--<md-input-container>-->
+  <!--<input type="text" mdInput [formControl]="formControl" [mdAutocomplete]="auto">  {{selectedAuthor.name}}-->
+<!--</md-input-container>-->
+
+<!--<md-autocomplete #auto="mdAutocomplete" [displayWith]="displayAuthor">-->
+  <!--<md-option *ngFor="let author of authors" (onSelectionChange)="selectedAuthor = author">-->
+  <!--{{ author.name }}-->
+  <!--</md-option>-->
+<!--</md-autocomplete>-->
+<!--<div [hidden] = "!selectedAuthor">-->
+  <!--// Tutaj wyswietlimy ksiazki danego autora-->
+<!--</div>-->
+
+
+
+
+
 
 <!--<div class="flex-container" fxLayout="row" fxLayout.xs="column">-->
   <!--<div fxFlex>-->
@@ -41,5 +49,56 @@
   <!--</div>-->
   <!--<div [hidden] = "!selectedAuthor">-->
     <!--// Tutaj wyswietlimy ksiazki danego autora-->
+  <!--</div>-->
+<!--</div>-->
+
+
+
+<div class="flex-container" fxLayout="row" fxLayout.xs="column">
+  <div fxFlex>
+    <md-card>
+      <md-nav-list>
+        <md-input-container>
+          <input type="text" mdInput [formControl]="formControl" [mdAutocomplete]="autoAuthors">
+        </md-input-container>
+
+        <md-autocomplete #autoAuthors="mdAutocomplete" [displayWith]="displayAuthor">
+          <md-option *ngFor="let author of filteredAuthors | async" [value]="author" (onSelectionChange)="selectedAuthor = author">
+            {{ author.name }}
+          </md-option>
+        </md-autocomplete>
+
+        <div [hidden] = "!selectedAuthor.books">
+          // Tutaj wyswietlimy książki danego autora
+
+          <!--<md-list-item *ngFor="let book of selectedAuthor.books">-->
+            <!--<a md-line >{{ book.title }}</a>-->
+          <!--</md-list-item>-->
+
+        </div>
+
+      </md-nav-list>
+    </md-card>
+  </div>
+
+  <!--<div fxFlex>-->
+    <!--<md-card>-->
+      <!--<md-nav-list>-->
+        <!--<md-input-container>-->
+          <!--<input type="text" mdInput [formControl]="formControl" [mdAutocomplete]="autoBooks">-->
+        <!--</md-input-container>-->
+
+        <!--<md-autocomplete #autoBooks="mdAutocomplete" [displayWith]="displayBook">-->
+          <!--<md-option *ngFor="let book of filteredBooks | async" [value]="book" (onSelectionChange)="selectedBook = book">-->
+            <!--{{ book.title }}-->
+          <!--</md-option>-->
+        <!--</md-autocomplete>-->
+
+        <!--<div [hidden] = "!selectedBook">-->
+          <!--// Tutaj wyswietlimy autorów danej książki-->
+        <!--</div>-->
+
+      <!--</md-nav-list>-->
+    <!--</md-card>-->
   <!--</div>-->
 <!--</div>-->
