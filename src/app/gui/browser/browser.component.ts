@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Author} from "../author";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
+import {AuthorService} from "../services/author.service";
+import {Router} from "@angular/router";
+import {AuthorComponent} from "../author/author.component";
 
 @Component({
   selector: 'app-browser',
@@ -10,13 +13,43 @@ import {Observable} from "rxjs/Observable";
 })
 export class BrowserComponent implements OnInit {
   authors: Author[];
-  selectedAuthor : Author;
+  selectedAuthor: Author;
   formControl = new FormControl();
   filteredAuthors: Observable<Author[]>;
-  constructor() {
+  // constructor() {
+  //   this.selectedAuthor = new Author();
+  //   //this.authors = Author.getTestData();
+  //   this.authors=AuthorService=>getAl
+  //   this.authorService.getAll()
+  //       .subscribe(authors => {
+  //         this.authors = authors;
+  //       });
+  // }
+
+  constructor(private authorService: AuthorService,
+              private router: Router,
+              ) {
     this.selectedAuthor = new Author();
-    this.authors = Author.getTestData();
+    this.authorService.getAll().subscribe(authors => {
+      this.authors = authors;
+    });
+
+   // this.refresh();
+    //this.authors = Author.getTestData();
+    // this.authors=AuthorService=>getAl
+    // this.authorService.getAll()
+    //     .subscribe(authors => {
+    //       this.authors = authors;
+    //     });
   }
+
+  // refresh(){
+  // this.authorService.getAll()
+  //     .subscribe(authors => {
+  //       this.authors = authors;
+  //     });
+  // }
+
   ngOnInit() {
     this.filteredAuthors = this.formControl.valueChanges
         .startWith(null)
@@ -33,3 +66,4 @@ export class BrowserComponent implements OnInit {
   }
 
 }
+

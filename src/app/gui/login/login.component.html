@@ -1,20 +1,51 @@
 <!--<p>-->
   <!--login works!-->
 <!--</p>-->
-<div class="full-screen">
-  <div class="full-screen login-container" fxLayout="column" fxLayoutAlign="center center">
-    <div fxFlex="30">
+<!--<div class="full-screen">-->
+  <!--<div class="full-screen login-container" fxLayout="column" fxLayoutAlign="center center">-->
+    <!--<div fxFlex="30">-->
+      <!--<md-card fxLayout="column">-->
+        <!--<md-input-container>-->
+          <!--<input mdInput placeholder="Login">-->
+        <!--</md-input-container>-->
+        <!--<md-input-container>-->
+          <!--<input type="password" mdInput placeholder="Password">-->
+        <!--</md-input-container>-->
+        <!--<button md-raised-button color="primary">-->
+          <!--<md-icon class="material-icons">fingerprint</md-icon>-->
+          <!--<span>Login</span>-->
+        <!--</button>-->
+      <!--</md-card>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div>
+  <div class="full-screen" fxLayout="column" fxLayoutAlign="center center">
+    <div>
       <md-card fxLayout="column">
-        <md-input-container>
-          <input mdInput placeholder="Login">
-        </md-input-container>
-        <md-input-container>
-          <input type="password" mdInput placeholder="Password">
-        </md-input-container>
-        <button md-raised-button color="primary">
-          <md-icon class="material-icons">fingerprint</md-icon>
-          <span>Login</span>
-        </button>
+        <form name="loginForm" (ngSubmit)="login()">
+          <div>
+            <md-input-container>
+              <input mdInput placeholder="Login"
+                     [(ngModel)]="username" name="username">
+            </md-input-container>
+          </div>
+          <div>
+            <md-input-container>
+              <input type="password" mdInput placeholder="Password"
+                     [(ngModel)]="password"
+                     name="password">
+            </md-input-container>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="end end">
+            <button md-raised-button color="primary"
+                    [disabled]="loading">
+              <md-icon class="material-icons">fingerprint</md-icon>
+              <span>Login</span>
+            </button>
+          </div>
+        </form>
       </md-card>
     </div>
   </div>
